@@ -14,7 +14,7 @@ namespace Quiz_App
         private int answer;
         private string difficulty;
 
-        public int QuestionID { get { return questionID; } set { questionID = value; } }
+        public int QuestionID { get { return questionID; } }
         public String QuestionText { get { return questionText; } set { questionText = value; } }
         public string[] Options { get { return options; } set { options = value; } }
         public int Answer { get { return answer; } set { answer = value; } }
@@ -23,7 +23,7 @@ namespace Quiz_App
         public Question (int questionID, string questionText, string[] options, 
                         int answer, string difficulty) 
         {
-            QuestionID = questionID;
+            questionID++;
             QuestionText = questionText;
             Options = options;
             Answer = answer;
