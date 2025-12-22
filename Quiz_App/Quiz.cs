@@ -13,7 +13,7 @@ namespace Quiz_App
         private int quizID;
         private String title;
         private String description;
-        //private Category category; Relies on Category class - not implemented yet
+        //private Category quizCategory; Relies on Category class - not implemented yet
         private Question[] questions;
         private DateTime date;
         //private User[] competitors; Relies on user class - not implemented yet
@@ -21,9 +21,20 @@ namespace Quiz_App
         public int QuizID { get { return quizID; }}
         public String Title { get { return title; } set { title = value; } }
         public String Description { get { return description; } set { description = value; } }
-        //public Category Category { get { return category; } set { category = value; } } 
+        //public Category QuizCategory { get { return quizCategory; } set { quizCategory = value; } } 
         public Question[] Questions { get { return questions; } set { questions = value; } }
         public DateTime Date { get { return date; } set { date = value; } }
         //public User[] Competitors { get { return competitors;  } set { competitors = value; } }
+
+        public Quiz(String title, String description, /*Category category,*/ Question[] questions, DateTime date/*, User[] competitors*/)
+        {
+            quizID++;
+            Title = title;
+            Description = description;
+            /*QuizCategory = category;*/
+            Questions = questions;
+            Date = date;
+            /*Competitors = competitors;*/
+        }
     }
 }

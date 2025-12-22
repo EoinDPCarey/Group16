@@ -20,7 +20,7 @@ namespace Quiz_App
         public int Answer { get { return answer; } set { answer = value; } }
         public string Difficulty { get { return difficulty; } set { difficulty = value; } }
 
-        public Question (int questionID, string questionText, string[] options, 
+        public Question (string questionText, string[] options, 
                         int answer, string difficulty) 
         {
             questionID++;
