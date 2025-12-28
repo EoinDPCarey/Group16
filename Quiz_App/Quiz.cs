@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Quiz_App
 {
@@ -39,17 +40,36 @@ namespace Quiz_App
 
         public void DisplayQuiz()
         {
-
+            Console.WriteLine("Title: " + Title);
+            foreach (Question question in questions) { 
+                question.DisplayQuestion();
+                Console.WriteLine("");
+            }
         }
 
         public void SaveQuiz()
         {
-
+            StringBuilder sb = new StringBuilder();
+            //Need to complete
         }
 
         public void CreateQuestion()
         {
-
+            List<string> options = new List<string>();
+            Console.WriteLine("Enter the text of the question: ");
+            string text = Console.ReadLine();
+            Console.WriteLine("Enter the possible answers, press 0 to finish: ");
+            string input = " ";
+            do
+            {
+                input = Console.ReadLine();
+                options.Add(input);
+            } while (input != "0");
+            Console.WriteLine("Please enter the index of the correct input (Starting at 0 instead of 1): ");
+            int answer =  Convert.ToInt16(Console.ReadLine());
+            Console.WriteLine("Please enter the difficulty of the question (Easy, Medium, Hard): ");
+            string difficulty = Console.ReadLine();
+            Questions.Add(new Question(text, options, answer, difficulty));
         }
 
         public void UpdateQuestion(int questionID)
@@ -59,7 +79,21 @@ namespace Quiz_App
             {
                 if (Questions[index].QuestionID == questionID)
                 {
-
+                    List<string> options = new List<string>();
+                    Console.WriteLine("Enter the text of the question: ");
+                    string text = Console.ReadLine();
+                    Console.WriteLine("Enter the possible answers, press 0 to finish: ");
+                    string input = " ";
+                    do
+                    {
+                        input = Console.ReadLine();
+                        options.Add(input);
+                    } while (input != "0");
+                    Console.WriteLine("Please enter the index of the correct input (Starting at 0 instead of 1): ");
+                    int answer = Convert.ToInt16(Console.ReadLine());
+                    Console.WriteLine("Please enter the difficulty of the question (Easy, Medium, Hard): ");
+                    string difficulty = Console.ReadLine();
+                    Questions[index].UpdateQuestion(text, options, answer, difficulty);
                 }
             }
         }
@@ -71,7 +105,8 @@ namespace Quiz_App
             {
                 if (Questions[index].QuestionID == questionID)
                 {
-
+                    Questions.RemoveAt(index);
+                    return;
                 }
             }
         }
