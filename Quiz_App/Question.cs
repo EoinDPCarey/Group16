@@ -10,17 +10,17 @@ namespace Quiz_App
     {
         private int questionID;
         private string questionText;
-        private string[] options;
+        private List<string> options;
         private int answer;
         private string difficulty;
 
         public int QuestionID { get { return questionID; } }
-        public String QuestionText { get { return questionText; } set { questionText = value; } }
-        public string[] Options { get { return options; } set { options = value; } }
+        public string QuestionText { get { return questionText; } set { questionText = value; } }
+        public List<string> Options { get { return options; } set { options = value; } }
         public int Answer { get { return answer; } set { answer = value; } }
         public string Difficulty { get { return difficulty; } set { difficulty = value; } }
 
-        public Question (int questionID, string questionText, string[] options, 
+        public Question (string questionText, List<string> options, 
                         int answer, string difficulty) 
         {
             questionID++;
@@ -32,14 +32,15 @@ namespace Quiz_App
 
         public void DisplayQuestion()
         {
+            Console.WriteLine("Difficulty: " + Difficulty);
             Console.WriteLine(QuestionText);
-            for (int i = 0; i < Options.Length; i++)
+            for (int i = 0; i < Options.Count; i++)
             {
                 Console.WriteLine((i+1)+"- "+Options[i]);
             }
         }
 
-        public void UpdateQuestion(String newText, String[] newOptions, int newAnswer, String newDifficulty)
+        public void UpdateQuestion(String newText, List<String> newOptions, int newAnswer, String newDifficulty)
         {
             QuestionText = newText;
             Options = newOptions;
