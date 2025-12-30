@@ -10,12 +10,12 @@ namespace Quiz_App
     {
         private int questionID;
         private string questionText;
-        private string[] options;
+        private List<string> options;
         private int answer;
         private string difficulty;
 
         public int QuestionID { get { return questionID; } }
-        public String QuestionText { get { return questionText; } set { questionText = value; } }
+        public string QuestionText { get { return questionText; } set { questionText = value; } }
         public List<string> Options { get { return options; } set { options = value; } }
         public int Answer { get { return answer; } set { answer = value; } }
         public string Difficulty { get { return difficulty; } set { difficulty = value; } }

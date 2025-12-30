@@ -49,8 +49,42 @@ namespace Quiz_App
 
         public void SaveQuiz()
         {
-            StringBuilder sb = new StringBuilder();
-            //Need to complete
+            string filePath = "questions.csv";
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(filePath))
+                {
+                    if (!File.Exists(filePath))
+                    {
+                        sw.WriteLine("QuizID,Title,Description,QuestionID,QuestionText,QuestionOptions,QuestionAnswer,QuestionDifficulty,Date"); //Needs updated for category and users
+                    }
+                    foreach (Question q in questions)
+                    {
+                        string joinOptions = string.Join("|", q.Options);
+                        string line = $"{QuizID}," +
+                        $"{CsvEscape(Title)}," + $"{CsvEscape(Description)}," + $"{q.QuestionID}," + $"{CsvEscape(q.QuestionText)}," +
+                        $"{CsvEscape(joinOptions)}," + $"{q.Answer}," + $"{CsvEscape(q.Difficulty)}," + $"{Date:yyyy-MM-dd}";
+                        sw.WriteLine(line);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error saving quiz: " + e.Message);
+            }
+        }
+
+        private string CsvEscape(string value)
+        {
+            if (value == null) return "";
+
+            if (value.Contains(",") || value.Contains("\"") || value.Contains("\n"))
+            {
+                value = value.Replace("\"", "\"\"");
+                return $"\"{value}\"";
+            }
+
+            return value;
         }
 
         public void CreateQuestion()
