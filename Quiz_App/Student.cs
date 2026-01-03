@@ -6,30 +6,20 @@ using System.Threading.Tasks;
 
 namespace Quiz_App
 {
-    internal class Student
+    internal class Student : User
     {
         private string status;
+        public string Status { get; private set; }
 
-        public string Username { get; private set; }
-        public string Password { get; private set; }
-        public string Email { get; private set; }
-        public string Role { get; private set; }
-
-        public Student(string username, string password, string email, string role, string status)
+        public Student(string username, string password, string email, string role, string status) :base(username, password, email,role)
         {
-            Username = username;
-            Password = password;
-            Email = email;
-            Role = role;
             this.status = status;
         }
 
-        public void DisplayInfo()
+        public override void DisplayInfo()
         {
             Console.WriteLine("=== Student ===");
-            Console.WriteLine($"Username: {Username}");
-            Console.WriteLine($"Email: {Email}");
-            Console.WriteLine($"Role: {Role}");
+            base.DisplayInfo();
             Console.WriteLine($"Status: {status}");
         }
 

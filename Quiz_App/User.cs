@@ -27,13 +27,16 @@ namespace Quiz_App
             Role = role;
             Points = 0;
         }
-        public void DisplayInfo()
+        public virtual void DisplayInfo()
         {
-            Console.WriteLine($"ID: {UserID}, Username: {Username}, Role:{Role}, Points: {Points}");
+            Console.WriteLine($"ID: {UserID}");
+            Console.WriteLine($"Username: {Username}");
+            Console.WriteLine($"Role: {Role}");
+            Console.WriteLine($"Points: {Points}");
         }
         public bool IsLoggedIn { get; private set; }
 
-        public void Login()
+        public virtual void Login()
         {
             IsLoggedIn = true;
             Console.WriteLine($"{Username} Logged In.");
