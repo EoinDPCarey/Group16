@@ -11,31 +11,33 @@ namespace Quiz_App
 {
     internal class Quiz
     {
+        private static int nextID = 1;
         private int quizID;
         private String title;
         private String description;
-        //private Category quizCategory; Relies on Category class - not implemented yet
+        private Category quizCategory;
         private List<Question> questions;
         private DateTime date;
-        //private User[] competitors; Relies on user class - not implemented yet
+        private User[] competitors;
 
         public int QuizID { get { return quizID; }}
         public String Title { get { return title; } set { title = value; } }
         public String Description { get { return description; } set { description = value; } }
-        //public Category QuizCategory { get { return quizCategory; } set { quizCategory = value; } } 
+        public Category QuizCategory { get { return quizCategory; } set { quizCategory = value; } } 
         public List<Question> Questions { get { return questions; } set { questions = value; } }
         public DateTime Date { get { return date; } set { date = value; } }
-        //public User[] Competitors { get { return competitors;  } set { competitors = value; } }
+        public User[] Competitors { get { return competitors;  } set { competitors = value; } }
 
-        public Quiz(String title, String description, /*Category category,*/ List<Question> questions, DateTime date/*, User[] competitors*/)
+        public Quiz(String title, String description, Category category, List<Question> questions, DateTime date, User[] competitors)
         {
-            quizID++;
+            quizID = nextID;
+            nextID++;
             Title = title;
             Description = description;
-            /*QuizCategory = category;*/
+            QuizCategory = category;
             Questions = questions;
             Date = date;
-            /*Competitors = competitors;*/
+            Competitors = competitors;
         }
 
         public void DisplayQuiz()
@@ -52,17 +54,18 @@ namespace Quiz_App
             string filePath = "questions.csv";
             try
             {
+                bool fileExists = File.Exists(filePath);
                 using (StreamWriter sw = new StreamWriter(filePath))
                 {
-                    if (!File.Exists(filePath))
+                    if (!fileExists)
                     {
-                        sw.WriteLine("QuizID,Title,Description,QuestionID,QuestionText,QuestionOptions,QuestionAnswer,QuestionDifficulty,Date"); //Needs updated for category and users
+                        sw.WriteLine("QuizID,Title,Description,CategoryName,CategoryDescription,QuestionID,QuestionText,QuestionOptions,QuestionAnswer,QuestionDifficulty,Date");
                     }
                     foreach (Question q in questions)
                     {
                         string joinOptions = string.Join("|", q.Options);
                         string line = $"{QuizID}," +
-                        $"{CsvEscape(Title)}," + $"{CsvEscape(Description)}," + $"{q.QuestionID}," + $"{CsvEscape(q.QuestionText)}," +
+                        $"{CsvEscape(Title)}," + $"{CsvEscape(Description)},"+ $"{CsvEscape(QuizCategory.Name)}," + $"{CsvEscape(QuizCategory.Description)}," + $"{q.QuestionID}," + $"{CsvEscape(q.QuestionText)}," +
                         $"{CsvEscape(joinOptions)}," + $"{q.Answer}," + $"{CsvEscape(q.Difficulty)}," + $"{Date:yyyy-MM-dd}";
                         sw.WriteLine(line);
                     }
@@ -97,7 +100,10 @@ namespace Quiz_App
             do
             {
                 input = Console.ReadLine();
-                options.Add(input);
+                if (input != 0)
+                {
+                    options.Add(input);
+                }
             } while (input != "0");
             Console.WriteLine("Please enter the index of the correct input (Starting at 0 instead of 1): ");
             int answer =  Convert.ToInt16(Console.ReadLine());
@@ -108,8 +114,7 @@ namespace Quiz_App
 
         public void UpdateQuestion(int questionID)
         {
-            int index = 0;
-            for(index, Questions.Count - 1, index++)
+            for(int index = 0, index < Questions.Count, index++)
             {
                 if (Questions[index].QuestionID == questionID)
                 {
@@ -134,8 +139,7 @@ namespace Quiz_App
 
         public void RemoveQuestion(int questionID)
         {
-            int index = 0;
-            for (index, Questions.Count - 1, index++)
+            for (int index = 0, index < Questions.Count, index++)
             {
                 if (Questions[index].QuestionID == questionID)
                 {
