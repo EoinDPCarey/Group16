@@ -100,7 +100,7 @@ namespace Quiz_App
             do
             {
                 input = Console.ReadLine();
-                if (input != 0)
+                if (Int32.Parse(input) != 0) 
                 {
                     options.Add(input);
                 }
