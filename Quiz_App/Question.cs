@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Quiz_App
 {
-    internal class Question
+    public class Question
     {
         private int questionID;
         private string questionText;
