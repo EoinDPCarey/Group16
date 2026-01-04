@@ -207,7 +207,7 @@ namespace Quiz_App
 
             if (role.ToLower() == "admin")
             {
-                admins.Add(new Admin(username, password, email, role, DateTime.Now));
+                admins.Add(new Admin(username, password, email, role));
             }
             else
             {

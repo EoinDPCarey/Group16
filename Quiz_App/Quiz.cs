@@ -100,7 +100,7 @@ namespace Quiz_App
             do
             {
                 input = Console.ReadLine();
-                if (input != 0)
+                if (Int32.Parse(input) != 0) 
                 {
                     options.Add(input);
                 }
@@ -114,7 +114,7 @@ namespace Quiz_App
 
         public void UpdateQuestion(int questionID)
         {
-            for(int index = 0, index < Questions.Count, index++)
+            for(int index = 0; index < Questions.Count; index++)
             {
                 if (Questions[index].QuestionID == questionID)
                 {
@@ -139,7 +139,7 @@ namespace Quiz_App
 
         public void RemoveQuestion(int questionID)
         {
-            for (int index = 0, index < Questions.Count, index++)
+            for (int index = 0; index < Questions.Count; index++)
             {
                 if (Questions[index].QuestionID == questionID)
                 {
