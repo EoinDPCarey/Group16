@@ -8,15 +8,15 @@ namespace Quiz_App
 {
     public class Category
     {
-        // Fields / Properties
-        public int CategoryID { get; }          // read-only
+        
+        public int CategoryID { get; }          
         public string Name { get; private set; }
         public string Description { get; private set; }
 
-        // Static counter to auto-generate IDs
+        
         private static int _idCounter = 1;
 
-        // Constructor
+       
         public Category(string name, string description)
         {
             CategoryID = _idCounter++;
@@ -24,7 +24,6 @@ namespace Quiz_App
             Description = description;
         }
 
-        // DisplayCategory()
         public void DisplayCategory()
         {
             Console.WriteLine("=== Category Information ===");
@@ -33,7 +32,6 @@ namespace Quiz_App
             Console.WriteLine($"Description: {Description}");
         }
 
-        // UpdateCategory(name: string, description: string)
         public void UpdateCategory(string name, string description)
         {
             Name = name;
