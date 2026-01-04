@@ -8,13 +8,12 @@ namespace Quiz_App
 {
     public class QuizSystem
     {
-        // Fields
+    
         private List<Quiz> quizzes;
         private List<Admin> admins;
         private List<Student> students;
         private List<Category> categories;
 
-        // Constructor
         public QuizSystem()
         {
             quizzes = new List<Quiz>();
@@ -23,7 +22,6 @@ namespace Quiz_App
             categories = new List<Category>();
         }
 
-        // Main entry point for quiz system
         public void StartQuiz()
         {
             MainMenu();
